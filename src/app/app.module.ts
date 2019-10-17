@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { RouterModule } from '@angular/router';
+import { RouterModule, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
@@ -49,7 +49,7 @@ import { GlobalModule } from './Global/Global.module';
 import { TemplatesModule } from './Templates/Templates.module';
 import { MenuItems } from './Core/menu/menu-items/menu-items';
 
-import { EmbryoService } from './Services/Embryo.service';
+import { EmbryoService } from './services/Embryo.service';
 
 import { AppComponent } from './app.component';
 import { MainComponent } from './Main/Main.component';
@@ -67,8 +67,9 @@ import { NotFoundComponent } from './Pages/NotFound/NotFound.component';
 import { SideBarMenuComponent } from './Layouts/Menu/SidebarMenu/SidebarMenu.component';
 import { PaymentDetailSideBarComponent } from './Layouts/PaymentDetailSideBar/PaymentDetailSideBar.component';
 import { FixedHeaderComponent } from './Layouts/Header/FixedHeader/FixedHeader.component';
-import { XhrInterceptor } from './Services/xhr.interceptor';
+import { XhrInterceptor } from './services/xhr.interceptor';
 import { SharedModule } from './shared/shared.module';
+import { AuthenticationGuard } from './security/authentication.guard';
 
 
 /********** Custom option for ngx-translate ******/
@@ -127,7 +128,8 @@ export function createTranslateLoader(http: HttpClient) {
          provide: HTTP_INTERCEPTORS,
          useClass: XhrInterceptor,
          multi: true
-      }
+      },
+      AuthenticationGuard
    ],
    bootstrap: [AppComponent]
 })

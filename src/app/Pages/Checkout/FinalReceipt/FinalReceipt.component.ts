@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
-import { EmbryoService } from '../../../Services/Embryo.service';
+import { EmbryoService } from '../../../services/Embryo.service';
 
 declare var $: any;
 

@@ -1,6 +1,6 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder,FormArray, Validators } from '@angular/forms';
-import { EmbryoService } from '../../../Services/Embryo.service';
+import { EmbryoService } from '../../../services/Embryo.service';
 import { Router, NavigationEnd } from '@angular/router';
 
 @Component({

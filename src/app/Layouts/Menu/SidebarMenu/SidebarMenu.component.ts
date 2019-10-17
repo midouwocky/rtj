@@ -3,7 +3,7 @@ import { Router, NavigationEnd } from '@angular/router';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { TranslateService } from '@ngx-translate/core';
 
-import { EmbryoService } from '../../../Services/Embryo.service';
+import { EmbryoService } from '../../../services/Embryo.service';
 
 @Component({
   selector: 'embryo-SidebarMenu',

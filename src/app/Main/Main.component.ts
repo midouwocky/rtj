@@ -3,7 +3,7 @@ import { Router, NavigationEnd } from '@angular/router';
 import { Observable, of as observableOf, interval ,  Subscription } from 'rxjs';
 import { map, take, delay, withLatestFrom, finalize, tap } from 'rxjs/operators';
 import { LoadingBarService } from '@ngx-loading-bar/core';
-import { EmbryoService } from '../Services/Embryo.service';
+import { EmbryoService } from '../services/Embryo.service';
 import { MenuItems } from '../Core/menu/menu-items/menu-items';
 import { Directionality } from '@angular/cdk/bidi';
 import { ObservableMedia, MediaChange } from '@angular/flex-layout';
