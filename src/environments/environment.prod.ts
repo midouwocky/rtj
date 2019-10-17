@@ -1,3 +1,5 @@
+const serverUrl = 'http://young-scrubland-57448.herokuapp.com/api/v2';
+
 export const environment = {
   production: true,
   firebase: {
