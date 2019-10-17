@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params }   from '@angular/router';
 import { FormControl, FormGroup, FormBuilder,FormArray, Validators } from '@angular/forms';
-import { EmbryoService } from '../../../Services/Embryo.service';
+import { EmbryoService } from '../../../services/Embryo.service';
 
 @Component({
   selector: 'app-Details',

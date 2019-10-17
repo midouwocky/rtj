@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
 
-import { EmbryoService } from '../../Services/Embryo.service';
+import { EmbryoService } from '../../services/Embryo.service';
 
 @Component({
   selector: 'embryo-BrandsLogo',

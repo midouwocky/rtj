@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Routes} from '@angular/router';
+import { Routes } from '@angular/router';
 
 import { MainComponent } from './Main/Main.component';
 import { HomeoneComponent } from './Pages/Home/HomeOne/HomeOne.component';
@@ -8,27 +8,28 @@ import { HomeTwoComponent } from './Pages/Home/HomeTwo/HomeTwo.component';
 import { HomeThreeComponent } from './Pages/Home/HomeThree/HomeThree.component';
 import { CartComponent } from './Pages/Cart/Cart.component';
 import { NotFoundComponent } from './Pages/NotFound/NotFound.component';
+import { AuthenticationGuard } from './security/authentication.guard';
 
-export const AppRoutes : Routes = [
+export const AppRoutes: Routes = [
    {
-      path : '',
+      path: '',
       redirectTo: 'home',
       pathMatch: 'full',
    }, {
-      path : '',
-      component : MainComponent,
-      children: [ 
+      path: '',
+      component: MainComponent,
+      children: [
          {
-            path : 'home',
-            component : HomeoneComponent
+            path: 'home',
+            component: HomeoneComponent
          },
          {
-            path : 'home-two',
-            component : HomeTwoComponent
+            path: 'home-two',
+            component: HomeTwoComponent
          },
          {
-            path : 'home-three',
-            component : HomeThreeComponent
+            path: 'home-three',
+            component: HomeThreeComponent
          },
          {
             path: 'products',
@@ -39,8 +40,8 @@ export const AppRoutes : Routes = [
             component: CartComponent
          },
          {
-          path: 'not-found',
-          component: NotFoundComponent
+            path: 'not-found',
+            component: NotFoundComponent
          },
          {
             path: 'session',
@@ -48,7 +49,8 @@ export const AppRoutes : Routes = [
          },
          {
             path: 'checkout',
-            loadChildren: './Pages/Checkout/Checkout.module#CheckoutModule'
+            loadChildren: './Pages/Checkout/Checkout.module#CheckoutModule',
+            canActivate: [AuthenticationGuard]
          },
          {
             path: '',
@@ -68,4 +70,5 @@ export const AppRoutes : Routes = [
       path: '**',
       redirectTo: 'not-found'
    }
-]
+];
+

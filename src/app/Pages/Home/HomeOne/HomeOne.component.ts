@@ -2,7 +2,7 @@ import { Component, OnInit, AfterViewChecked} from '@angular/core';
 import { MatTabChangeEvent } from '@angular/material';
 import { ChangeDetectorRef } from '@angular/core';
 
-import { EmbryoService } from '../../../Services/Embryo.service';
+import { EmbryoService } from '../../../services/Embryo.service';
 
 @Component({
   selector: 'app-homeone',
