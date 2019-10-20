@@ -1,0 +1,15 @@
+{
+    "/api/*": {
+      "target": "http://young-scrubland-57448.herokuapp.com",
+      "secure": false,
+      "logLevel": "debug",
+      "changeOrigin": true
+    },
+    "/spree_oauth/*": {
+      "target": "http://young-scrubland-57448.herokuapp.com",
+      "secure": false,
+      "logLevel": "debug",
+      "changeOrigin": true
+    }
+  }
+  

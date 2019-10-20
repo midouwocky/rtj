@@ -11,6 +11,6 @@ export const environment = {
     messagingSenderId: '73552048992'
   },
   endpoints: {
-
+    loginUrl: '/spree_oauth/token'
   }
 };
