@@ -1,7 +1,7 @@
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build ---prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
-const serverUrl = 'http://young-scrubland-57448.herokuapp.com/api/v2';
+const serverUrl = 'http://young-scrubland-57448.herokuapp.com';
 
 export const environment = {
   production: false,
@@ -14,7 +14,9 @@ export const environment = {
     messagingSenderId: '73552048992'
   },
   endpoints: {
-  PRODUCTS: serverUrl + '/storefront/products'
+  PRODUCTS: serverUrl + '/storefront/products',
+    loginUrl: '/spree_oauth/token',
+    accountUrl: '/api/v2/storefront/account'
   }
 };
 
