@@ -1,24 +1,27 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, Params }   from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { EmbryoService } from '../../../services/Embryo.service';
+import { ProductsService } from 'src/app/Services/products.service';
 
 @Component({
-  selector: 'app-DetailPage',
-  templateUrl: './DetailPage.component.html',
-  styleUrls: ['./DetailPage.component.scss']
+   selector: 'app-DetailPage',
+   templateUrl: './DetailPage.component.html',
+   styleUrls: ['./DetailPage.component.scss']
 })
 export class DetailPageComponent implements OnInit {
 
-   id                : any;
-   type              : any;
-   apiResponse       : any;
-   singleProductData : any;
-   productsList      : any;
+   id: any;
+   type: any;
+   apiResponse: any;
+   singleProductData: any;
+   productsList: any;
+   singleProductImage: any;
 
    constructor(private route: ActivatedRoute,
-              private router: Router,
-              public embryoService: EmbryoService) {
-      
+      private router: Router,
+      public embryoService: EmbryoService,
+      private productsService: ProductsService) {
+
    }
 
    ngOnInit() {
@@ -26,19 +29,26 @@ export class DetailPageComponent implements OnInit {
          this.id = res.id;
          this.type = res.type;
          this.getData();
-      })
+      });
    }
 
    public getData() {
-      this.embryoService.getProducts().valueChanges().subscribe(res => this.checkResponse(res));
+
+      this.productsService.getProduct(this.id)
+         .subscribe((res: any) => {
+            this.singleProductData = res.data;
+            this.singleProductImage = res.included;
+         }, error => {
+         });
    }
+
+
 
    public checkResponse(response) {
       this.productsList = null;
       this.productsList = response[this.type];
-      for(let data of this.productsList)
-      {
-         if(data.id == this.id) {
+      for (const data of this.productsList) {
+         if (data.id === this.id) {
             this.singleProductData = data;
             break;
          }

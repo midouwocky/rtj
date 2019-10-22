@@ -14,7 +14,7 @@ export const environment = {
     messagingSenderId: '73552048992'
   },
   endpoints: {
-
+  PRODUCTS: serverUrl + '/storefront/products'
   }
 };
 

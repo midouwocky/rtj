@@ -8,10 +8,10 @@
               <div fxFlex.xs="15" fxFlex.sm="15" fxFlex.md="15" fxFlex.lg="15" fxFlex.xl="15">
                 <div class="product-detail-image-gallery pr-4">
                   <mat-grid-list cols="1" rowHeight="1:1" gutterSize="20px">
-                    <mat-grid-tile *ngFor="let img of detailData?.image_gallery; let i=index">
+                    <mat-grid-tile *ngFor="let img of imageData; let i=index">
                       <div class="product-image-gallery-item">
-                        <a id="{{i}}_img" class="p-link" [ngClass]="{ 'border-active': i === 0 }" href="javascript:void(0)" (mouseenter)="getImagePath(img, i)">
-                          <img [src]="img" alt="">
+                        <a id="{{i}}_img.id" class="p-link" [ngClass]="{ 'border-active': i === 0 }" href="javascript:void(0)" (mouseenter)="getImagePath(img, i)">
+                          <img [src]="url + img.attributes.styles[2].url" alt="">
                         </a>
                       </div>
                     </mat-grid-tile>
@@ -34,7 +34,7 @@
           <div fxFlex.xs="100" fxFlex.sm="100" fxFlex.md=50 fxFlex.lg="50" fxFlex.xl="50">
             <div class="product-detail-content">
               <a href="javascript:void(0)" [routerLink]="['/']">Back to Shop</a>
-              <h3>{{detailData?.name}}</h3>
+              <h3>{{detailData?.attributes.name}}</h3>
               <div fxLayoutAlign="start center" class="mb-3">
                 <div>
                   <a href="javascript:void(0)" class="text-underline" (click)="reviewPopup(detailData)">ADD A REVIEW</a>
@@ -58,7 +58,7 @@
                 </li>
               </ul>
               <div class="short-des">
-                <p>{{detailData?.description}}
+                <p>{{detailData?.attributes.description}}
                 </p>
               </div>
               <div class="bullets-points">
