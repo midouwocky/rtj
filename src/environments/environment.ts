@@ -14,7 +14,7 @@ export const environment = {
     messagingSenderId: '73552048992'
   },
   endpoints: {
-  PRODUCTS: serverUrl + '/storefront/products',
+    PRODUCTS: serverUrl + '/api/v2/storefront/products',
     loginUrl: '/spree_oauth/token',
     accountUrl: '/api/v2/storefront/account'
   }
