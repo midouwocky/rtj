@@ -4,6 +4,7 @@ import { Cridentials } from 'src/app/shared/model/cridentials.model';
 import { AuthenticationService } from 'src/app/security/authentication.service';
 import { StorageUtil } from 'src/app/utils/storage.util';
 import { RefreshToken } from 'src/app/shared/model/refresh-token.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'embryo-SignIn',
@@ -18,7 +19,8 @@ export class CommonSignInComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -50,6 +52,9 @@ export class CommonSignInComponent implements OnInit {
   getAccountInfos() {
     this.authenticationService.getAccount().subscribe(res => {
       console.log(res);
+      if (res) {
+        this.router.navigate(['/products']);
+      }
     });
   }
 

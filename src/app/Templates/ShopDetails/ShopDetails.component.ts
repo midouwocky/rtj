@@ -12,8 +12,9 @@ import { EmbryoService } from '../../services/Embryo.service';
 export class ShopDetailsComponent implements OnInit, OnChanges {
 
    @Input() detailData: any;
+   @Input() imageData: any;
    @Input() currency: string;
-
+   url = 'http://young-scrubland-57448.herokuapp.com';
    mainImgPath: string;
    totalPrice: any;
    type: any;
@@ -30,13 +31,13 @@ export class ShopDetailsComponent implements OnInit, OnChanges {
    }
 
    ngOnInit() {
-      this.mainImgPath = this.detailData.image;
-      this.totalPrice = this.detailData.price;
+      this.mainImgPath = this.url + this.imageData[0].attributes.styles[3].url;
+      this.totalPrice = this.detailData.attributes.price;
 
-      this.route.params.subscribe(res => {
-         this.type = null;
-         this.type = res.type;
-      });
+      // this.route.params.subscribe(res => {
+      //    this.type = null;
+      //    this.type = res.type;
+      // });
    }
 
    ngOnChanges() {
@@ -47,12 +48,12 @@ export class ShopDetailsComponent implements OnInit, OnChanges {
    }
 
    /**
-    * getImagePath is used to change the image path on click event. 
+    * getImagePath is used to change the image path on click event.ab
     */
-   public getImagePath(imgPath: string, index: number) {
+   public getImagePath(imgPath: any, index: number) {
       $('.p-link').removeClass('border-active');
-      this.mainImgPath = imgPath;
-      $("#" + index + "_img").addClass('border-active');
+      this.mainImgPath = this.url + imgPath.attributes.styles[3].url;
+      $('#' + index + 'img.id').addClass('border-active');
    }
 
    public calculatePrice(detailData: any, value: any) {

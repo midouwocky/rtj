@@ -7,7 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class LighteningDealsComponent implements OnInit {
 
-   @Input() lighteningDeals : any;
+   @Input() lighteningDeals: any;
 
    constructor() { }
 

@@ -2,19 +2,21 @@
   <div fxFlex.xs="100" fxFlex.sm="50" fxFlex.md="50" fxFlex.lg="{{lg}}" fxFlex.xl="{{xl}}" *ngFor="let product of products; let i=index; trackBy: trackByObjectID">
      <mat-card class="example-card" *ngIf="gridLength && (i<gridLength)">
       <a class="p-link" [routerLink]="['/products', product?.type, product?.id]">
-        <img width="626" height="800" mat-card-image [src]="product?.image" alt="Photo of a Shiba Inu">
+        <!-- <img width="626" height="800" mat-card-image [src]="product?.image" alt="Photo of a Shiba Inu"> -->
+        <img width="626" height="800" mat-card-image [src]="getImageLink(product)" alt="Photo of a Shiba Inu">
       </a>
       <div class="wishlist-icon {{i}}-wishlist">
          <a (click)="productAddToWishlist(product, i+'-wishlist')"><i  class="material-icons"> favorite </i></a>
       </div>
         <mat-card-content class="product-content relative">
-           <h5><a [routerLink]="['/products', product?.type, product?.id]" class="title-link">{{product?.name}}</a> </h5>
+           <h5><a [routerLink]="['/products', product?.type, product?.id]" class="title-link">{{product?.attributes.name}}</a> </h5>
            <div>
               <div fxFlex fxLayoutAlign="space-between">
-                 <h6 class="accent-color">{{product?.price | currency: currency}}</h6>
-                 <div class="rating-star">
+                 <!-- <h6 class="accent-color">{{product?.attributes.price | currency: currency}}</h6> -->
+                 <h6 class="accent-color">{{product?.attributes.price}}</h6>
+                 <!-- <div class="rating-star">
                     <embryo-Rating [rate]="product.rating"></embryo-Rating>
-                 </div>
+                 </div> -->
               </div>
            </div>
            <div class="m-icon" *ngIf="checkCartAlready(product)">
@@ -28,32 +30,36 @@
      </mat-card>
      <!-- Multiple show products grid -->
      <mat-card class="example-card" *ngIf="!gridLength">
-        <a class="p-link" *ngIf="product?.id" [routerLink]="['/products', product?.type, product?.id]">
-          <img width="626" height="800" mat-card-image [src]="product?.image" alt="Photo">
+        <a class="p-link" *ngIf="product?.id" [routerLink]="['/products', product?.id]">
+          <img width="626" height="800" mat-card-image [src]="getImageLink(product)" alt="Photo">
+          <!-- <img width="626" height="800" mat-card-image src="" alt="Photo"> -->
         </a>
         <a class="p-link" *ngIf="!product?.id" [routerLink]="['/products/accessories/17']">
-          <img width="626" height="800" mat-card-image [src]="product?.image" [ngClass]="{ transparent: !loaded }" (load)="onLoad()" alt="Photo">
+          <!-- <img width="626" height="800" mat-card-image [src]="product?.image" [ngClass]="{ transparent: !loaded }" (load)="onLoad()" alt="Photo"> -->
+          <img width="626" height="800" mat-card-image [src]="getImageLink(product)" [ngClass]="{ transparent: !loaded }" (load)="onLoad()" alt="Photo">
+
         </a>
         <div class="wishlist-icon {{i}}-wishlist">
             <a (click)="productAddToWishlist(product, i+'-wishlist')"><i  class="material-icons"> favorite </i></a>
          </div>
         <mat-card-content class="product-content relative">
-           <h5><a *ngIf="product?.id" [routerLink]="['/products', product?.type, product?.id]" class="title-link">{{product?.name}}</a> </h5>
-           <h5><a *ngIf="!product?.id" [routerLink]="['/products/accessories/17']" class="title-link">{{product?.name}}</a> </h5>
+           <h5><a *ngIf="product?.id" [routerLink]="['/products',product?.id]" class="title-link">{{product?.attributes.name}}</a> </h5>
+           <h5><a *ngIf="!product?.id" [routerLink]="['/products', product?.type, product?.id]" class="title-link">{{product?.attributes.name}}</a> </h5>
            <div>
               <div fxFlex fxLayoutAlign="space-between">
-                 <h6 class="accent-color">{{product?.price | currency: currency}}</h6>
-                 <div class="rating-star">
+                 <!-- <h6 class="accent-color">{{product?.attributes.price | currency: currency}}</h6> -->
+                 <h6 class="accent-color">{{product?.attributes.price }}</h6>
+                 <!-- <div class="rating-star">
                     <embryo-Rating [rate]="product.rating"></embryo-Rating>
-                 </div>
+                 </div> -->
               </div>
            </div>
            <div class="m-icon" *ngIf="checkCartAlready(product)">
-              <embryo-AddToCardButton [product]="product" (addToCart)="addToCartProduct($event)"></embryo-AddToCardButton>
+              <embryo-AddToCardButton [product]="product.attributes" (addToCart)="addToCartProduct($event)"></embryo-AddToCardButton>
            </div>
             <div class="m-icon" *ngIf="!checkCartAlready(product)">
                <button mat-fab *ngIf="product?.id" [routerLink]="['/products', product?.type, product?.id]"><i class="material-icons">remove_red_eye</i> </button>
-               <button mat-fab *ngIf="!product?.id"[routerLink]="['/products/accessories/17']"><i class="material-icons">remove_red_eye</i> </button>
+               <!-- <button mat-fab *ngIf="!product?.id"[routerLink]="['/products/accessories/17']"><i class="material-icons">remove_red_eye</i> </button> -->
            </div>
           
         </mat-card-content>
