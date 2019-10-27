@@ -1,4 +1,4 @@
-const serverUrl = 'http://young-scrubland-57448.herokuapp.com';
+const serverUrl = 'https://young-scrubland-57448.herokuapp.com';
 
 export const environment = {
   production: true,
