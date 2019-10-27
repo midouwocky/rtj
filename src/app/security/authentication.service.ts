@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Cridentials } from 'src/app/shared/model/cridentials.model';
+import { RefreshToken } from 'src/app/shared/model/refresh-token.model';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 
@@ -40,7 +41,14 @@ export class AuthenticationService {
     // const req = 'http://young-scrubland-57448.herokuapp.com/spree_oauth/token';
     return this.http.post(req, cridentials);
   }
-  
+
+  authenticatedWithRefreshToken(refreshToken: RefreshToken) {
+    refreshToken.grant_type = 'refresh_token';
+    const req = this.loginUrl;
+    // const req = 'http://young-scrubland-57448.herokuapp.com/spree_oauth/token';
+    return this.http.post(req, refreshToken);
+  }
+
   /**
    * get the account 
    */
@@ -49,5 +57,6 @@ export class AuthenticationService {
     // const req = 'http://young-scrubland-57448.herokuapp.com/api/v2/storefront/account';
     return this.http.get(req);
   }
+
 
 }

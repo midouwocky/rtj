@@ -2,9 +2,25 @@
 export class StorageUtil {
 
     static getAuthToken(): string {
-        return JSON.parse(localStorage.getItem('auth_token'));
+        const authObject = this.getAuthObject();
+         if (authObject) {
+            return authObject.access_token;
+         } else {
+             return null;
+         }
     }
-    static setAuthToken(user) {
-        localStorage.setItem('auth_token', JSON.stringify(user));
+    static removeAuthToken() {
+        localStorage.removeItem('auth_token');
+    }
+
+    static getAuthObject(): any {
+        return JSON.parse(localStorage.getItem('auth_object'));
+    }
+
+    static setAuthObject(authObject: any) {
+        localStorage.setItem('auth_object', JSON.stringify(authObject));
+    }
+    static removeAuthObject() {
+        localStorage.removeItem('auth_object');
     }
 }

@@ -3,6 +3,7 @@ import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { Cridentials } from 'src/app/shared/model/cridentials.model';
 import { AuthenticationService } from 'src/app/security/authentication.service';
 import { StorageUtil } from 'src/app/utils/storage.util';
+import { RefreshToken } from 'src/app/shared/model/refresh-token.model';
 
 @Component({
   selector: 'embryo-SignIn',
@@ -38,7 +39,8 @@ export class CommonSignInComponent implements OnInit {
       cridentials.username = this.usernameControl.value;
       cridentials.password = this.passwordControl.value;
       this.authenticationService.login(cridentials).subscribe(res => {
-        StorageUtil.setAuthToken(res.access_token);
+        StorageUtil.setAuthObject(res);
+        console.log(+ new Date());
         this.getAccountInfos();
       });
     }
@@ -50,5 +52,26 @@ export class CommonSignInComponent implements OnInit {
       console.log(res);
     });
   }
+
+  getNewTokenWithRefreshToken() {
+    const authObject = StorageUtil.getAuthObject();
+    const creadtedAt = authObject.created_at;
+    const now = + new Date();
+    const experationTime = (creadtedAt + 7200) * 1000;
+    if (now > experationTime) {
+      const refreshToken = authObject.refresh_token;
+      const refreTokenObject = new RefreshToken();
+      refreTokenObject.refresh_token = refreshToken;
+      this.authenticationService.authenticatedWithRefreshToken(refreTokenObject).subscribe(res => {
+        StorageUtil.setAuthObject(res);
+        this.authenticationService.setAutheneticated(true);
+      }, err => {
+        StorageUtil.removeAuthObject();
+        StorageUtil.removeAuthToken();
+        this.authenticationService.setAutheneticated(false);
+      });
+    }
+  }
+
 
 }
