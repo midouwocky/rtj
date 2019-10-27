@@ -13,6 +13,9 @@
     "build:client-and-server-bundles": "ng build --prod && ng run embryo:server",
     "webpack:server": "webpack --config webpack.server.config.js --progress --colors"
   },
+  "engines": {
+    "node" : "10.16.3"
+  },
   "private": true,
   "dependencies": {
     "@agm/core": "^1.0.0-beta.5",
