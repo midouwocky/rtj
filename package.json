@@ -64,7 +64,7 @@
     "web-animations-js": "^2.3.1",
     "zone.js": "^0.8.26",
     "typescript": "^3.1.6",
-    "express": "^4.17.1",
+    "express": "^4.17.1"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.12.4",
